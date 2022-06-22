@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приемная комисия</title>
+    <script src='/scripts/vue/dist/vue.global.js'></script>
+    <script src='/scripts/axios/dist/axios.min.js'></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header>
+        <a href="http://taviak.ru"><img src="/img/logo.jpg" alt=""></a>
+        <div>
+            <div class="line">
+                <div>
+                    <a href="http://taviak.ru/o_college/" target="_blank">КОЛЛЕДЖ</a>
+                    <a href="http://taviak.ru/abiturient/podgotov_kursi/" target="_blank">КУРСЫ</a>
+                    <a href="http://taviak.ru/studentu/profsoyuzy/profsoyuz/sobytiya/" target="_blank">СОБЫТИЯ</a>
+                    <a href="/lk.html" v-if="isLogin" target="_blank">ЛИЧНЫЙ КАБИНЕТ</a>
+                    <a href="#" v-if="isLogin" @click.prevent="isLogin = false">ВЫЙТИ</a>
+                    <a href="/login.html" v-if="!isLogin" @click="isLogin = true" target="_blank">АВТОРИЗАЦИЯ</a>
+                </div>
+                
+                <a href="tel:+7(863)431-59-40">+7 (863) 431-59-40</a>
+            </div>
+            <div class="line two">
+                <div>
+                    <a href="#" style="color:lightgrey">Приемная комиссия </a>
+                    <a href="#" @click.prevent="scrollToSpec">Специальности</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="baner">
+        <div id="line">
+            <div class="bg"></div>
+            <div id="text">
+                <span class="mini">СТРУКТУРНОЕ ПОДРАЗДЕЛЕНИЕ КОЛЛЕДЖА</span>
+                <span class="big">Приемная комиссия</span>
+            </div>
+        </div>
+        <div id="tabs">
+            <div class="tab">
+                <img src="/img/diplom.svg" alt="">
+                <span>Диплом гос. образца</span>
+            </div>
+
+            <div class="tab">
+                <img src="/img/mesta.svg" alt="">
+                <span>Бюджетные места</span>
+            </div>
+
+            <div class="tab">
+                <img src="/img/hat.svg" alt="">
+                <span>Поступление в вузы-партнеры</span>
+            </div>
+
+            <div class="tab">
+                <img src="/img/bag.svg" alt="">
+                <span>Содействие в трудоустройстве</span>
+            </div>
+
+            <div class="tab">
+                <img src="/img/army.svg" alt="">
+                <span>Отсрочка от армии</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="cards">
+        <a href="#" @click.prevent="scrollToDocs">
+            <h2>Документы</h2>
+            <span>подробнее →</span>
+        </a>
+
+        <a href="http://taviak.ru/Content/Kollege/Documenti/akkreditacia_2018.pdf" target="_blank">
+            <h2>Свидетельство о государственной аккредитации</h2>
+            <span>подробнее →</span>
+        </a>
+
+        <a href="/questions.html" target="_blank">
+            <h2>Частые вопросы</h2>
+            <span>подробнее →</span>
+        </a>
+
+        <a href="http://taviak.ru/abiturient/vstupit_ispitaniya/" target="_blank">
+            <h2>Вступительные испытания</h2>
+            <span>подробнее →</span>
+        </a>
+
+        <a href="#">
+            <h2>Бюджетное обучение</h2>
+            <span>подробнее →</span>
+        </a>
+
+        <a href="http://taviak.ru/o_college/platnye-obrazovatelnye-uslugi/" target="_blank">
+            <h2>Платное обучение</h2>
+            <span>подробнее →</span>
+        </a>
+    </div>
+
+    <div id="specialities">
+        <h1>Специальности колледжа</h1>
+    </div>
+
+    <div id="docs">
+        <h1>Официальные документы</h1>
+        <div class="container">
+            <a href="#">
+                <img src="/img/doc.svg" alt="">
+                <span>Лицензия на осуществление образовательной деятельности</span>
+            </a>
+
+            <a href="#">
+                <img src="/img/doc.svg" alt="">
+                <span>Приложения к лицензии</span>
+            </a>
+
+            <a href="#">
+                <img src="/img/doc.svg" alt="">
+                <span>Свидетельство о гос. аккредитации №3194</span>
+            </a>
+
+            <a href="#">
+                <img src="/img/doc.svg" alt="">
+                <span>Устав образовательной организации</span>
+            </a>
+
+            <a href="#">
+                <img src="/img/doc.svg" alt="">
+                <span>Локальные акты ОУ</span>
+            </a>
+
+            <a href="#">
+                <img src="/img/doc.svg" alt="">
+                <span>Правила приема</span>
+            </a>
+            <a href="#">
+                <img src="/img/doc.svg" alt="">
+                <span>Учебные планы</span>
+            </a>
+
+            <a href="#">
+                <img src="/img/doc.svg" alt="">
+                <span>Все документы</span>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <span>Подробную информацию можете узнать на нашем</span>
+        <a href="http://taviak.ru" target="_blank">официальном сайте taviak.ru</a> 
+        <br>
+        <a href="tel:+7(863)431-59-40">+7 (863) 431-59-40</a>
+    </footer>
+
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    isLogin: false,
+                    specialities: []
+                }
+            },
+            watch: {
+                isLogin(newVal) {
+                    localStorage.isLogin = newVal
+                }
+            },
+            mounted() {
+                const that = this
+                axios('/getSpecialities')
+                    .then(response => {
+                        that.specialities = response.data
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    })
+
+                this.isLogin = JSON.parse(localStorage.isLogin)
+            },
+            methods: {
+                scrollToSpec() {
+                    document.getElementById('specialities').scrollIntoView({block: "center", behavior: "smooth"});
+                },
+
+                scrollToDocs() {
+                    document.getElementById('docs').scrollIntoView({block: "center", behavior: "smooth"});
+                }
+            }
+        }).mount('body')
+
+        
+    </script>
+</body>
+
+</html>
