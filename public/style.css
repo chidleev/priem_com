@@ -198,7 +198,20 @@ h1 {
     gap: 25px;
 }
 
+#specialities .container {
+    padding: 0px 200px;
 
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+#specialities .container img {
+    min-width: calc(50% - 15px);
+    flex: 1 1;
+}
 
 
 
@@ -271,4 +284,59 @@ footer a {
 
 footer a:hover {
     color: #304030;
+}
+
+#content {
+    padding: 0 200px;
+
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 25px;
+    
+}
+
+#content .quests {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+#content .quests .card {
+    padding: 20px 30px;
+
+    min-width: calc(50% - 15px);
+    min-height: 80px;
+    flex: 1 1;
+
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+
+    text-decoration: none;
+
+    box-shadow: 0 0 5px 5px #eaeaea;
+
+    color: #304030;
+}
+
+#content .quests .card ul {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+}
+
+#content .quests .card ul li {
+    text-align: justify;
+}
+
+h2.card {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
 }

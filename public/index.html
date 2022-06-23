@@ -20,16 +20,14 @@
                     <a href="http://taviak.ru/o_college/" target="_blank">КОЛЛЕДЖ</a>
                     <a href="http://taviak.ru/abiturient/podgotov_kursi/" target="_blank">КУРСЫ</a>
                     <a href="http://taviak.ru/studentu/profsoyuzy/profsoyuz/sobytiya/" target="_blank">СОБЫТИЯ</a>
-                    <a href="/lk.html" v-if="isLogin" target="_blank">ЛИЧНЫЙ КАБИНЕТ</a>
-                    <a href="#" v-if="isLogin" @click.prevent="isLogin = false">ВЫЙТИ</a>
-                    <a href="/login.html" v-if="!isLogin" @click="isLogin = true" target="_blank">АВТОРИЗАЦИЯ</a>
+                    <a href="/login.html" target="_blank">ПОДАТЬ ДОКУМЕНТЫ</a>
                 </div>
                 
                 <a href="tel:+7(863)431-59-40">+7 (863) 431-59-40</a>
             </div>
             <div class="line two">
                 <div>
-                    <a href="#" style="color:lightgrey">Приемная комиссия </a>
+                    <a href="#">Приемная комиссия </a>
                     <a href="#" @click.prevent="scrollToSpec">Специальности</a>
                 </div>
             </div>
@@ -83,8 +81,8 @@
             <span>подробнее →</span>
         </a>
 
-        <a href="/questions.html" target="_blank">
-            <h2>Частые вопросы</h2>
+        <a href="/questions.html">
+            <h2>Часто задаваемые вопросы</h2>
             <span>подробнее →</span>
         </a>
 
@@ -106,6 +104,16 @@
 
     <div id="specialities">
         <h1>Специальности колледжа</h1>
+        <div class="container">
+            <img src="/img/spec/s.jpg" alt="">
+            <img src="/img/spec/p.jpg" alt="">
+            <img src="/img/spec/vb.jpg" alt="">
+            <img src="/img/spec/tel.jpg" alt="">
+            <img src="/img/spec/tm.jpg" alt="">
+            <img src="/img/spec/tor.jpg" alt="">
+            <img src="/img/spec/uk.jpg" alt="">
+            <img src="/img/spec/sb.jpg" alt="">
+        </div>
     </div>
 
     <div id="docs">
@@ -162,41 +170,16 @@
 
     <script>
         const app = Vue.createApp({
-            data() {
-                return {
-                    isLogin: false,
-                    specialities: []
-                }
-            },
-            watch: {
-                isLogin(newVal) {
-                    localStorage.isLogin = newVal
-                }
-            },
-            mounted() {
-                const that = this
-                axios('/getSpecialities')
-                    .then(response => {
-                        that.specialities = response.data
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    })
-
-                this.isLogin = JSON.parse(localStorage.isLogin)
-            },
             methods: {
                 scrollToSpec() {
-                    document.getElementById('specialities').scrollIntoView({block: "center", behavior: "smooth"});
+                    document.getElementById('specialities').scrollIntoView({block: "start", behavior: "smooth"});
                 },
 
                 scrollToDocs() {
-                    document.getElementById('docs').scrollIntoView({block: "center", behavior: "smooth"});
+                    document.getElementById('docs').scrollIntoView({block: "start", behavior: "smooth"});
                 }
             }
         }).mount('body')
-
-        
     </script>
 </body>
 
